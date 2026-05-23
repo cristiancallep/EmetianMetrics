@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<title>EmetianMetrics - Inicio de sesión</title>
 	<link rel="stylesheet" href="styles/login.css" />
+	<link rel="icon" href="assets/public/icono_pg.png" />
 </head>
 <body>
 	<main class="split">
@@ -15,7 +16,7 @@
 			</div>
 			<section class="card" aria-labelledby="login-title">
 				<h2 id="login-title">Iniciar sesión</h2>
-				<form class="login-form" method="post" novalidate>
+				<form class="login-form" action="views/dashboard.html" method="get" novalidate>
 					<div class="field">
 						<label for="email">Correo electrónico</label>
 						<input id="email" name="email" type="email" required placeholder="tu@correo.com" />
@@ -24,9 +25,10 @@
 						<label for="password">Contraseña</label>
 						<input id="password" name="password" type="password" required placeholder="Contraseña" />
 					</div>
-					<button type="submit" class="btn-primary">Entrar</button>
+					<p class="helper-text"><a href="views/forgot-password.html">¿Olvidaste tu contraseña?</a></p>
+					<button type="submit" class="btn-primary"><a href="./backend/consumo_api/index.php"></a> Entrar</button>	
 				</form>
-				<p class="signup">¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
+				<p class="signup">¿No tienes cuenta? <a href="views/register.html">Regístrate</a></p>
 			</section>
 		</div>
 		<div class="right">

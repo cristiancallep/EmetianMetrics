@@ -1,0 +1,70 @@
+:root{
+	--bg:#eef3f9;
+	--surface:#ffffff;
+	--surface-2:#f7fafc;
+	--border:#dbe4ef;
+	--text:#172033;
+	--muted:#65758b;
+	--accent:#1f7ae0;
+	--shadow:0 20px 40px rgba(15, 23, 42, 0.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(180deg,#eef3f9 0%,#e9eff7 100%);color:var(--text)}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+
+.profile-shell{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+.sidebar{background:linear-gradient(180deg,#0e2344 0%,#0c1b34 100%);color:#fff;padding:24px 18px;display:flex;flex-direction:column;gap:24px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:14px;padding:4px 8px 12px}
+.brand img{width:42px;height:42px;border-radius:12px;object-fit:cover;box-shadow:0 10px 20px rgba(0,0,0,.18)}
+.brand strong{display:block;font-size:1rem}
+.brand span{display:block;font-size:.82rem;color:rgba(255,255,255,.68)}
+.menu{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.menu-item{display:flex;align-items:center;gap:14px;padding:13px 14px;border-radius:14px;color:rgba(255,255,255,.8);background:transparent}
+.menu-item.active,.menu-item:hover{background:rgba(52, 152, 219, .22);color:#fff}
+.menu-item i{width:20px;text-align:center}
+
+.main{padding:24px 26px 30px}
+.topbar{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.topbar h1{margin:0;font-size:2rem;letter-spacing:-.03em}
+.topbar p{margin:6px 0 0;color:var(--muted)}
+.back-link{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:16px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow)}
+
+.profile-grid{display:grid;grid-template-columns:320px 1fr;gap:16px}
+.profile-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);padding:20px}
+.summary-card{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}
+.avatar{width:92px;height:92px;border-radius:28px;background:linear-gradient(135deg,#1f7ae0,#24c1c8);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;box-shadow:0 16px 26px rgba(31,122,224,.25)}
+.summary-card h2{margin:0}
+.summary-card p{margin:0;color:var(--muted)}
+.summary-chip{font-size:.85rem;padding:10px 12px;border-radius:999px;background:#edf5ff;color:#1f7ae0;font-weight:600}
+
+.form-card{padding:24px}
+.profile-form{display:flex;flex-direction:column;gap:16px}
+.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+label{display:flex;flex-direction:column;gap:8px}
+label span{font-size:.88rem;color:var(--muted)}
+input,textarea{border:1px solid var(--border);border-radius:16px;padding:12px 14px;background:var(--surface-2);color:var(--text);outline:none}
+input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(31,122,224,.08)}
+textarea{resize:vertical}
+.full-width{width:100%}
+.options-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.switch{flex-direction:row;align-items:center;gap:10px;padding:14px;border:1px solid var(--border);border-radius:16px;background:var(--surface-2)}
+.switch input{width:18px;height:18px}
+.form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:4px}
+.secondary-btn,.primary-btn{border:0;border-radius:16px;padding:12px 18px;font-weight:700;cursor:pointer}
+.secondary-btn{background:#edf2f7;color:var(--text)}
+.primary-btn{background:linear-gradient(90deg,var(--accent),#5ba7ff);color:#fff}
+
+@media (max-width:1100px){
+	.profile-shell{grid-template-columns:1fr}
+	.sidebar{position:relative;height:auto}
+	.profile-grid{grid-template-columns:1fr}
+}
+
+@media (max-width:720px){
+	.main{padding:18px}
+	.topbar{flex-direction:column;align-items:flex-start}
+	.field-grid,.options-grid{grid-template-columns:1fr}
+	.form-actions{flex-direction:column}
+	.secondary-btn,.primary-btn{width:100%}
+}
