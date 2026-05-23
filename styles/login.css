@@ -37,6 +37,11 @@ html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Helvetica,Arial,sans-s
 .signup{margin-top:14px;text-align:left;color:var(--muted);font-size:.9rem}
 .signup a{color:var(--accent);text-decoration:none}
 
+.terms{font-size:.85rem;color:var(--muted);line-height:1.4}
+.terms a{color:var(--accent);text-decoration:none}
+
+.helper-text{margin:0;color:var(--muted);font-size:.9rem}
+
 @media (max-width:900px){
   .split{grid-template-columns:1fr;}
   .right{display:none}
