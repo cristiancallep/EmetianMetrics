@@ -1,0 +1,51 @@
+:root{
+  --bg:#f5f7fa;
+  --card:#ffffff;
+  --accent:#2b6ef6;
+  --text:#1f2937;
+  --muted:#6b7280;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+
+/* Layout dividido */
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.left{display:flex;flex-direction:column;justify-content:center;padding:56px 72px}
+.right{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#ffffff00,#ffffff00)}
+.hero-img{width:90%;max-width:560px;height:auto;object-fit:contain}
+
+.hero-text h1{font-size:2rem;margin:0 0 12px;color:var(--text)}
+.lead{margin:0 0 24px;color:var(--muted);font-size:1rem}
+
+.card{background:var(--card);padding:26px;border-radius:12px;max-width:520px;box-shadow:0 10px 30px rgba(31,41,55,0.06)}
+.card h2{margin:0 0 10px;font-size:1.25rem}
+
+.login-form{display:flex;flex-direction:column;gap:18px}
+.field{display:flex;flex-direction:column}
+.field label{font-size:.85rem;color:var(--muted);margin-bottom:6px}
+.field input{border:0;border-bottom:2px solid #e6eefc;padding:10px 6px;font-size:1rem;outline:none;background:transparent;color:var(--text)}
+.field input::placeholder{color:#bfcfe8}
+.field input:focus{border-bottom-color:var(--accent);box-shadow:0 4px 18px rgba(43,110,246,0.08)}
+
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.checkbox{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--muted)}
+.checkbox input{width:16px;height:16px}
+
+.btn-primary{margin-top:6px;background:linear-gradient(90deg,var(--accent),#6fb1ff);color:#fff;border:none;padding:12px 20px;border-radius:24px;font-size:1rem;cursor:pointer;box-shadow:0 8px 20px rgba(43,110,246,0.12)}
+.btn-primary:hover{transform:translateY(-1px)}
+
+.signup{margin-top:14px;text-align:left;color:var(--muted);font-size:.9rem}
+.signup a{color:var(--accent);text-decoration:none}
+
+.terms{font-size:.85rem;color:var(--muted);line-height:1.4}
+.terms a{color:var(--accent);text-decoration:none}
+
+.helper-text{margin:0;color:var(--muted);font-size:.9rem}
+.helper-text a{color:var(--accent);text-decoration:none}
+
+@media (max-width:900px){
+  .split{grid-template-columns:1fr;}
+  .right{display:none}
+  .left{padding:28px}
+  .hero-text h1{font-size:1.5rem}
+}
