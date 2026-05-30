@@ -26,6 +26,8 @@ if ($user) {
         'token' => $token,
         'expires_at' => $expiresAt,
     ]);
+
+    redirect(BASE_URL . '/views/reset-password.html?token=' . urlencode($token));
 }
 
 redirect(BASE_URL . '/views/forgot-password.html?sent=1');
