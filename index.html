@@ -16,7 +16,7 @@
 			</div>
 			<section class="card" aria-labelledby="login-title">
 				<h2 id="login-title">Iniciar sesión</h2>
-				<form class="login-form" action="views/dashboard.html" method="get" novalidate>
+				<form class="login-form" action="backend/auth/login.php" method="post" novalidate>
 					<div class="field">
 						<label for="email">Correo electrónico</label>
 						<input id="email" name="email" type="email" required placeholder="tu@correo.com" />
@@ -26,7 +26,7 @@
 						<input id="password" name="password" type="password" required placeholder="Contraseña" />
 					</div>
 					<p class="helper-text"><a href="views/forgot-password.html">¿Olvidaste tu contraseña?</a></p>
-					<button type="submit" class="btn-primary"><a href="./backend/consumo_api/index.php"></a> Entrar</button>	
+					<button type="submit" class="btn-primary">Entrar</button>
 				</form>
 				<p class="signup">¿No tienes cuenta? <a href="views/register.html">Regístrate</a></p>
 			</section>

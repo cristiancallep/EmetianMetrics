@@ -33,7 +33,8 @@ button,input,textarea{font:inherit}
 .profile-grid{display:grid;grid-template-columns:320px 1fr;gap:16px}
 .profile-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);padding:20px}
 .summary-card{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}
-.avatar{width:92px;height:92px;border-radius:28px;background:linear-gradient(135deg,#1f7ae0,#24c1c8);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;box-shadow:0 16px 26px rgba(31,122,224,.25)}
+.avatar{width:92px;height:92px;border-radius:28px;background:linear-gradient(135deg,#1f7ae0,#24c1c8);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;box-shadow:0 16px 26px rgba(31,122,224,.25);position:relative;overflow:hidden}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .summary-card h2{margin:0}
 .summary-card p{margin:0;color:var(--muted)}
 .summary-chip{font-size:.85rem;padding:10px 12px;border-radius:999px;background:#edf5ff;color:#1f7ae0;font-weight:600}
