@@ -1,0 +1,142 @@
+<?php
+require_once __DIR__ . '/../backend/helpers.php';
+require_login();
+?>
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>EmetianMetrics - Dashboard</title>
+	<link rel="stylesheet" href="../styles/dashboard.css" />
+	<link rel="icon" href="../assets/public/icono_pg.png" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+	<div class="app-shell">
+		<aside class="sidebar">
+			<div class="brand">
+				<img src="../assets/public/icono_pg.png" alt="EmetianMetrics" />
+				<div>
+					<strong>EmetianMetrics</strong>
+					<span>Crypto dashboard</span>
+				</div>
+			</div>
+
+			<nav class="menu" aria-label="Menú lateral">
+				<a class="menu-item active" href="#overview"><i class="bi bi-grid-1x2"></i><span>Dashboard</span></a>
+				<a class="menu-item" href="#top-coins"><i class="bi bi-coin"></i><span>Top coins</span></a>
+				<a class="menu-item" href="#chart"><i class="bi bi-graph-up-arrow"></i><span>Tendencias</span></a>
+				<a class="menu-item" href="#table"><i class="bi bi-table"></i><span>Listado</span></a>
+				<a class="menu-item" href="items.php"><i class="bi bi-box-seam"></i><span>Items</span></a>
+				<a class="menu-item" href="users.php"><i class="bi bi-people"></i><span>Usuarios</span></a>
+				<a class="menu-item" href="favourites.php"><i class="bi bi-heart"></i><span>Fav. por usuario</span></a>
+				<a class="menu-item" href="profile.php"><i class="bi bi-person"></i><span>Perfil</span></a>
+				<a class="menu-item" href="../backend/auth/logout.php"><i class="bi bi-box-arrow-right"></i><span>Salir</span></a>
+			</nav>
+		</aside>
+
+		<div class="main">
+			<header class="topbar">
+				<div>
+					<button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Ocultar menú lateral"><i class="bi bi-layout-sidebar-inset"></i></button>
+					<h1>Dashboard</h1>
+					<p>Vista de estadísticas y mercado cripto en tiempo real</p>
+				</div>
+				<div class="topbar-actions">
+					<button class="action-btn" id="downloadPdfBtn" type="button"><i class="bi bi-download"></i><span>PDF</span></button>
+					<a class="action-btn profile-link" href="profile.php"><i class="bi bi-person-circle"></i><span>Perfil</span></a>
+					<div id="dashboardMessage" class="notification" aria-live="polite"></div>
+					<label class="search">
+						<i class="bi bi-search"></i>
+						<input id="coinSearch" type="search" placeholder="Buscar moneda" />
+					</label>
+					<span id="lastUpdate" class="last-update">Actualizando...</span>
+				</div>
+			</header>
+
+			<section class="stats-grid" id="overview">
+				<article class="stat-card">
+					<span class="stat-label">Market cap total</span>
+					<strong id="totalMarketCap">-</strong>
+					<small id="marketCapNote">Cargando datos</small>
+				</article>
+				<article class="stat-card">
+					<span class="stat-label">Cambio promedio 24h</span>
+					<strong id="avgChange">-</strong>
+					<small id="avgChangeNote">Tendencia general</small>
+				</article>
+				<article class="stat-card">
+					<span class="stat-label">Top gainer</span>
+					<strong id="topGainer">-</strong>
+					<small id="topGainerNote">Mayor subida del día</small>
+				</article>
+				<article class="stat-card">
+					<span class="stat-label">Monedas visibles</span>
+					<strong id="coinsCount">20</strong>
+					<small>Datos consumidos desde el backend</small>
+				</article>
+			</section>
+
+			<section class="dashboard-grid">
+				<div class="panel chart-panel" id="chart">
+					<div class="panel-header">
+						<div>
+							<h2 id="selectedCoinName">Bitcoin</h2>
+							<p><span id="selectedCoinSymbol">BTC</span> · gráfico histórico</p>
+						</div>
+						<div class="time-buttons" id="timeRangeBtns">
+							<button class="time-btn active" data-days="7">7D</button>
+							<button class="time-btn" data-days="14">14D</button>
+							<button class="time-btn" data-days="30">30D</button>
+							<button class="time-btn" data-days="90">90D</button>
+						</div>
+					</div>
+					<canvas id="priceChart" height="120"></canvas>
+				</div>
+
+				<aside class="panel side-panel" id="top-coins">
+					<div class="panel-header compact">
+						<div>
+							<h2>Top 5</h2>
+							<p>Mayor capitalización de mercado</p>
+						</div>
+					</div>
+					<div id="topCoinsList" class="coin-list"></div>
+				</aside>
+			</section>
+
+			<section class="panel table-panel" id="table">
+				<div class="panel-header compact">
+					<div>
+						<h2>To das lascriptomonedas</h2>
+						<p>Listado completo consumido desde la API del backend</p>
+					</div>
+				</div>
+				<div class="table-wrap">
+					<table>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Moneda</th>
+								<th>Precio</th>
+								<th>24h</th>
+								<th>Market cap</th>
+								<th>Tendencia</th>
+							</tr>
+						</thead>
+						<tbody id="cryptoTableBody"></tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+	<script src="../assets/js/dashboard.js"></script>
+</body>
+</html>

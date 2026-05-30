@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>EmetianMetrics - Perfil</title>
+	<link rel="stylesheet" href="../styles/profile.css" />
+	<link rel="icon" href="../assets/public/icono_pg.png" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="profile-shell">
+		<aside class="sidebar">
+			<div class="brand">
+				<img src="../assets/public/icono_pg.png" alt="EmetianMetrics" />
+				<div>
+					<strong>EmetianMetrics</strong>
+					<span>Perfil de usuario</span>
+				</div>
+			</div>
+			<nav class="menu" aria-label="Menú lateral">
+				<a class="menu-item" href="dashboard.html"><i class="bi bi-grid-1x2"></i><span>Dashboard</span></a>
+				<a class="menu-item active" href="profile.html"><i class="bi bi-person"></i><span>Perfil</span></a>
+				<a class="menu-item" href="../index.html"><i class="bi bi-box-arrow-right"></i><span>Salir</span></a>
+			</nav>
+		</aside>
+
+		<main class="main">
+			<header class="topbar">
+				<div>
+					<h1>Editar perfil</h1>
+					<p>Actualiza tus datos personales y preferencias</p>
+				</div>
+				<a class="back-link" href="dashboard.html"><i class="bi bi-arrow-left"></i> Volver al dashboard</a>
+			</header>
+
+			<section class="profile-grid">
+				<article class="profile-card summary-card">
+					<div class="avatar" id="profileAvatar">E</div>
+					<h2 id="profileNamePreview">Emetian User</h2>
+					<p id="profileEmailPreview">correo@ejemplo.com</p>
+					<div class="summary-chip">Perfil local listo para editar</div>
+				</article>
+
+				<article class="profile-card form-card">
+					<p id="profileStatusMessage" class="status-message"></p>
+					<form id="profileForm" class="profile-form">
+						<div class="field-grid">
+							<label>
+								<span>Nombre completo</span>
+								<input id="name" name="name" type="text" placeholder="Tu nombre" />
+							</label>
+							<label>
+								<span>Correo electrónico</span>
+								<input id="email" name="email" type="email" placeholder="tu@correo.com" />
+							</label>
+							<label>
+								<span>Ciudad</span>
+								<input id="city" name="city" type="text" placeholder="Ciudad" />
+							</label>
+							<label>
+								<span>Usuario</span>
+								<input id="username" name="username" type="text" placeholder="Nombre de usuario" />
+							</label>
+						</div>      
+						<div class="form-actions">
+							<button type="button" id="resetProfile" class="secondary-btn">Restablecer</button>
+							<button type="submit" class="primary-btn">Guardar cambios</button>
+						</div>
+					</form>
+				</article>
+			</section>
+		</main>
+	</div>
+
+	<script src="../assets/js/profile.js"></script>
+</body>
+</html>

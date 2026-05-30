@@ -1,0 +1,5 @@
+USE emetian_metrics;
+
+ALTER TABLE users
+    ADD COLUMN city VARCHAR(120) DEFAULT NULL,
+    ADD COLUMN bio TEXT DEFAULT NULL;
