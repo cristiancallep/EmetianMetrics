@@ -44,6 +44,9 @@ button,input{font:inherit}
 .search{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:0 14px;height:48px;min-width:280px;box-shadow:var(--shadow)}
 .search i{color:var(--muted)}
 .search input{border:0;outline:0;background:transparent;width:100%}
+.items-search{min-width:300px}
+.favourites-search{min-width:340px}
+.users-search{min-width:320px}
 .last-update{font-size:.9rem;color:var(--muted);background:rgba(255,255,255,.68);padding:12px 14px;border-radius:14px;border:1px solid var(--border)}
 
 .stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}
@@ -54,7 +57,9 @@ button,input{font:inherit}
 .stat-card small{color:var(--muted);font-size:.88rem}
 
 .dashboard-grid{display:grid;grid-template-columns:minmax(0,2fr) 360px;gap:16px;align-items:start;margin-bottom:16px}
+.overview-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:16px;align-items:start}
 .panel{padding:18px}
+.subpanel{padding:16px}
 .panel-header{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}
 .panel-header h2{margin:0;font-size:1.1rem}
 .panel-header p{margin:5px 0 0;color:var(--muted);font-size:.92rem}
@@ -90,6 +95,23 @@ tbody tr:hover{background:#f7fbff}
 .status-inline{display:inline-block;margin-left:8px;font-size:.9rem;font-weight:600}
 .status-inline.warning{color:#b45309}
 .status-inline.error{color:var(--red)}
+.item-form{display:flex;flex-direction:column;gap:18px}
+.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field-grid label{display:flex;flex-direction:column;gap:8px}
+.field-grid span{font-size:.9rem;color:var(--muted);font-weight:600}
+.field-grid input,.field-grid textarea{width:100%;border:1px solid var(--border);border-radius:14px;padding:13px 14px;background:var(--surface-2);color:var(--text);outline:none;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+.field-grid textarea{min-height:110px;resize:vertical}
+.field-grid input:focus,.field-grid textarea:focus{border-color:#9bbcf4;box-shadow:0 0 0 3px rgba(31,122,224,.12);background:#fff}
+.field-grid label:last-child{grid-column:span 2}
+.form-actions{display:flex;gap:10px;flex-wrap:wrap}
+.primary-btn,.secondary-btn,.btn-action{border:0;border-radius:14px;padding:11px 16px;font-weight:600;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .2s ease,opacity .2s ease}
+.primary-btn{background:linear-gradient(90deg,var(--accent),#5ba7ff);color:#fff;box-shadow:0 10px 22px rgba(31,122,224,.22)}
+.secondary-btn{background:var(--surface-2);color:var(--text);border:1px solid var(--border)}
+.btn-action{padding:9px 12px;margin-right:8px;background:var(--surface-2);color:var(--text);border:1px solid var(--border)}
+.btn-action.edit-item{background:rgba(31,122,224,.1);color:var(--accent);border-color:rgba(31,122,224,.18)}
+.btn-action.delete-item{background:rgba(226,85,85,.1);color:var(--red);border-color:rgba(226,85,85,.18)}
+.primary-btn:hover,.secondary-btn:hover,.btn-action:hover{transform:translateY(-1px)}
+.btn-action:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
 body.sidebar-collapsed .app-shell{grid-template-columns:92px 1fr}
 body.sidebar-collapsed .sidebar{padding-inline:12px}
@@ -109,6 +131,7 @@ body.sidebar-collapsed .main{padding-left:20px}
 	.app-shell{grid-template-columns:1fr}
 	.sidebar{position:relative;height:auto}
 	.dashboard-grid{grid-template-columns:1fr}
+	.overview-grid{grid-template-columns:1fr}
 	.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 	body.sidebar-collapsed .app-shell{grid-template-columns:1fr}
 	body.sidebar-collapsed .sidebar{padding-inline:18px}
@@ -125,6 +148,12 @@ body.sidebar-collapsed .main{padding-left:20px}
 	.main{padding:18px}
 	.topbar{flex-direction:column;align-items:flex-start}
 	.search{min-width:100%;width:100%}
+	.items-search{min-width:100%}
+	.favourites-search{min-width:100%}
+	.users-search{min-width:100%}
+	.overview-grid{gap:12px}
+	.field-grid{grid-template-columns:1fr}
+	.field-grid label:last-child{grid-column:auto}
 	.stats-grid{grid-template-columns:1fr}
 	.panel,.stat-card{border-radius:18px}
 }

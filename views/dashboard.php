@@ -34,6 +34,7 @@ require_login();
 				<a class="menu-item" href="#table"><i class="bi bi-table"></i><span>Listado</span></a>
 				<a class="menu-item" href="items.php"><i class="bi bi-box-seam"></i><span>Items</span></a>
 				<a class="menu-item" href="users.php"><i class="bi bi-people"></i><span>Usuarios</span></a>
+				<a class="menu-item" href="favourites.php"><i class="bi bi-heart"></i><span>Fav. por usuario</span></a>
 				<a class="menu-item" href="profile.php"><i class="bi bi-person"></i><span>Perfil</span></a>
 				<a class="menu-item" href="../backend/auth/logout.php"><i class="bi bi-box-arrow-right"></i><span>Salir</span></a>
 			</nav>

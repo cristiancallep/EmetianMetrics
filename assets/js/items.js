@@ -23,6 +23,10 @@ $(document).ready(function () {
         }
     });
 
+    $('#itemFilter').on('input', function () {
+        itemsTable.column(1).search(this.value).draw();
+    });
+
     function encodeHtml(value) {
         return String(value)
             .replace(/&/g, '&amp;')

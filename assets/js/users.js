@@ -12,6 +12,10 @@ $(document).ready(function () {
         }
     });
 
+    $('#userFilter').on('input', function () {
+        table.column(3).search(this.value).draw();
+    });
+
     fetch('../backend/api/users.php')
         .then((response) => response.json())
         .then((data) => {
