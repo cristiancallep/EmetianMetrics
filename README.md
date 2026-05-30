@@ -1,53 +1,123 @@
-# EmetianMetrics
+﻿# EmetianMetrics
 
-## Estado inicial y próximos pasos
+## Resumen del proyecto
 
-Se ha implementado la primera fase del backend PHP con soporte para:
+EmetianMetrics es una aplicación web PHP/MySQL diseñada para gestionar métricas y favoritos de criptomonedas en un entorno XAMPP local. Incluye:
 
-- Configuración de MySQL en XAMPP (`backend/config.php`)
-- Conexión PDO segura (`backend/db.php`)
-- Helpers comunes y gestión de sesión (`backend/helpers.php`)
-- Migraciones de base de datos (`backend/migrations/001_create_schema.sql`)
-- Script de migración ejecutable (`backend/migrations/migrate.php`)
-- Auth básico de registro, login, logout y recuperación de contraseña
-- Rutas API iniciales para `users` y `items`
-- Vistas principales protegidas con PHP: `views/dashboard.php` y `views/profile.php`
+- Autenticación de usuarios con registro, login, logout y recuperación de contraseña.
+- Dashboard de criptomonedas con datos del backend.
+- CRUD de favoritos cripto con subida de imagen.
+- Perfil de usuario editable y protegido por sesión.
+- Envío de correo con PHPMailer para notificaciones (configurable en `backend/config.php`).
 
-## Cómo ejecutar la migración
+## Estructura del proyecto
 
-1. Asegúrate de que XAMPP esté arrancado con MySQL activado.
-2. Abre una terminal en la carpeta del proyecto.
-3. Ejecuta:
+```
+EmetianMetrics/
+├─ assets/
+│  ├─ js/                # JavaScript de la aplicación
+│  ├─ styles/            # CSS
+│  └─ public/            # Imágenes y recursos estáticos
+├─ backend/
+│  ├─ api/               # Endpoints JSON y operaciones CRUD
+│  ├─ auth/              # Login, register, logout y recuperación
+│  ├─ consumo_api/       # API de datos cripto y caché
+│  ├─ migrations/        # Scripts de migración SQL
+│  ├─ uploads/           # Imágenes subidas por usuarios
+│  ├─ logs/              # Archivos de log (generados)
+│  ├─ config.php         # Configuración de DB y email
+│  ├─ db.php             # Conexión PDO con MySQL
+│  └─ helpers.php        # Utilidades comunes y sesión
+├─ vendor/               # Dependencias Composer
+├─ views/                # Vistas de la aplicación
+│  ├─ landing.html       # Página de bienvenida
+│  ├─ login.html
+│  ├─ register.html
+│  ├─ forgot-password.html
+│  ├─ reset-password.html
+│  ├─ dashboard.php      # Dashboard protegido
+│  ├─ items.php          # CRUD de favoritos cripto
+│  ├─ users.php          # Listado de usuarios
+│  ├─ favourites.php     # Favoritos por usuario
+│  └─ profile.php        # Perfil protegido
+├─ composer.json
+├─ composer.lock
+├─ composer.phar        # Composer local opcional
+└─ .gitignore
+```
+
+> Nota: `views/dashboard.html` y `views/profile.html` son versiones estáticas/prototipo; las páginas reales de la aplicación son las versiones PHP protegidas.
+
+## Preparación para presentar
+
+### 1. Requisitos
+
+- XAMPP con Apache y MySQL activos.
+- PHP 7.4+.
+- Composer instalado globalmente o `composer.phar` local.
+
+### 2. Instalación
+
+Desde la raíz del proyecto:
+
+```powershell
+composer install
+```
+
+Si no tienes Composer global:
+
+```powershell
+php composer.phar install
+```
+
+### 3. Configuración
+
+Edita `backend/config.php` para ajustar:
+
+- Credenciales de base de datos MySQL.
+- SMTP de correo (PHPMailer) si quieres enviar notificaciones.
+
+### 4. Migrar la base de datos
+
+Ejecuta:
 
 ```powershell
 php backend\migrations\migrate.php
 ```
 
-## Cómo usar el login y registro
+Esto crea las tablas necesarias y aplica las migraciones.
 
-- Página de inicio: `index.html`
-- Registro: `views/register.html`
-- Recuperar contraseña: `views/forgot-password.html`
+### 5. Uso
 
-Después del login la aplicación redirige a `views/dashboard.php`.
+- Abre `http://localhost/EmetianMetrics/`.
+- El sitio redirige a `views/landing.html`.
+- Usa el enlace de login para iniciar sesión.
 
-## Nuevas páginas añadidas
+### 6. Páginas clave
 
-- `views/items.php` — gestión de ítems con creación, edición, eliminación y subida de imagen.
-- `views/users.php` — listado de usuarios con DataTables.
-- `views/profile.php` — edición de perfil con avatar y campos guardados en MySQL.
+- `views/login.html`
+- `views/register.html`
+- `views/forgot-password.html`
+- `views/reset-password.html`
+- `views/dashboard.php`
+- `views/items.php`
+- `views/users.php`
+- `views/favourites.php`
+- `views/profile.php`
 
-## Endpoints añadidos
+## Limpieza realizada
 
-- `backend/api/profile.php` — devuelve los datos del usuario actual.
-- `backend/api/profile_update.php` — actualiza el perfil y sube avatar.
-- `backend/api/item_save.php` — crea o actualiza un ítem.
-- `backend/api/item_delete.php` — elimina un ítem.
+Se eliminaron los siguientes archivos generados no necesarios para la presentación:
 
-## Siguientes pasos recomendados
+- `composer-setup.php`
+- `assets/subirCarpeta.txt`
+- `backend/logs/item_save.log`
 
-1. Añadir protección completa en las rutas `views/dashboard.php` y `views/profile.php` (ya están protegidas con sesión PHP).
-2. Implementar CRUD para `items` y otra tabla adicional con formularios y DataTables.
-3. Añadir subida de imágenes con `backend/uploads/`.
-4. Mejorar el flujo de recuperación de contraseña para enviar correos.
-5. Conectar los datos del perfil y los ítems a la base de datos desde el frontend.
+También se agregó `.gitignore` para excluir archivos temporales y de caché.
+
+## Recomendaciones para la presentación
+
+- Mantén `backend/logs/` limpio antes de presentar.
+- Usa los archivos PHP protegidos para el demo en vivo.
+- Si no necesitas los prototipos HTML estáticos, puedes conservarlos como referencia o retirarlos.
+- Verifica que `backend/uploads/` tenga permisos de escritura en XAMPP.

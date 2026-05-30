@@ -45,6 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	const profile = loadProfile();
 	populateForm(profile);
 	updatePreview(profile);
+	const statusMessage = document.getElementById('profileStatusMessage');
+
+	function showStatusMessage(message, type = 'success') {
+		if (!statusMessage) return;
+		statusMessage.textContent = message;
+		statusMessage.className = `status-message ${type}`;
+		setTimeout(() => {
+			statusMessage.textContent = '';
+			statusMessage.className = 'status-message';
+		}, 4500);
+	}
 
 	document.getElementById('profileForm').addEventListener('submit', (event) => {
 		event.preventDefault();
@@ -62,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		saveProfile(updatedProfile);
 		updatePreview(updatedProfile);
-		alert('Perfil guardado localmente.');
+		showStatusMessage('Perfil guardado localmente.', 'success');
 	});
 
 	document.getElementById('resetProfile').addEventListener('click', () => {

@@ -50,6 +50,7 @@ require_login();
 				<div class="topbar-actions">
 					<button class="action-btn" id="downloadPdfBtn" type="button"><i class="bi bi-download"></i><span>PDF</span></button>
 					<a class="action-btn profile-link" href="profile.php"><i class="bi bi-person-circle"></i><span>Perfil</span></a>
+					<div id="dashboardMessage" class="notification" aria-live="polite"></div>
 					<label class="search">
 						<i class="bi bi-search"></i>
 						<input id="coinSearch" type="search" placeholder="Buscar moneda" />

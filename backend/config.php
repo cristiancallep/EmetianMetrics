@@ -11,6 +11,16 @@ define('DB_CHARSET', 'utf8mb4');
 
 define('BASE_URL', '/EmetianMetrics');
 
+// Gmail SMTP settings for PHPMailer
+// Rellena estos valores con tu cuenta y contraseña de aplicación.
+define('SMTP_HOST', 'smtp.gmail.com');
+define('SMTP_PORT', 587);
+define('SMTP_SECURE', 'tls');
+define('SMTP_USER', 'emetianmail@gmail.com');
+define('SMTP_PASS', 'asej cpmx rxjv hgcr');
+define('EMAIL_FROM_ADDRESS', 'emetianmail@gmail.com');
+define('EMAIL_FROM_NAME', 'EmetianMetrics');
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

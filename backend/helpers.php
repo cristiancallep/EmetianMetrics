@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once __DIR__ . '/../vendor/autoload.php';
+}
+
 require_once __DIR__ . '/db.php';
 
 function sanitize_input(string $value): string
@@ -75,6 +79,48 @@ function save_uploaded_file(array $file, string $folder, array $allowedExtension
     }
 
     return $filename;
+}
+
+function send_email(string $subject, string $body, string $recipientEmail, string $recipientName = ''): bool
+{
+    if (!class_exists(\PHPMailer\PHPMailer\PHPMailer::class)) {
+        return false;
+    }
+
+    $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->Host = SMTP_HOST;
+        $mail->SMTPAuth = true;
+        $mail->Username = SMTP_USER;
+        $mail->Password = SMTP_PASS;
+        $mail->SMTPSecure = SMTP_SECURE;
+        $mail->Port = SMTP_PORT;
+        $mail->CharSet = 'UTF-8';
+        $mail->setFrom(EMAIL_FROM_ADDRESS, EMAIL_FROM_NAME);
+        $mail->addAddress($recipientEmail, $recipientName ?: $recipientEmail);
+        $mail->Subject = $subject;
+        $mail->Body = $body;
+        $mail->isHTML(false);
+        $mail->send();
+        return true;
+    } catch (Throwable $e) {
+        @file_put_contents(__DIR__ . '/logs/email.log', date('c') . ' | ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
+        return false;
+    }
+}
+
+function send_item_created_notification(array $user, string $title, string $symbol, string $description, ?string $imagePath): bool
+{
+    $subject = 'Nuevo favorito cripto guardado: ' . $title;
+    $body = "Se ha guardado un nuevo favorito cripto en EmetianMetrics:\n\n" .
+        "Nombre: {$title}\n" .
+        "Símbolo: {$symbol}\n" .
+        "Notas: {$description}\n" .
+        ($imagePath ? "Imagen: {$imagePath}\n" : '') .
+        "\nGracias por usar EmetianMetrics!";
+
+    return send_email($subject, $body, $user['email'], $user['name']);
 }
 
 function generate_token(int $length = 40): string

@@ -53,17 +53,32 @@ $(document).ready(function () {
             });
     }
 
+    const messageBox = $('#itemFormMessage');
+
+    function showMessage(message, type = 'info') {
+        messageBox.removeClass('success error info').addClass(type).text(message).show();
+        if (type === 'success') {
+            setTimeout(() => messageBox.fadeOut(200), 4500);
+        }
+    }
+
+    function clearMessage() {
+        messageBox.hide().removeClass('success error info').text('');
+    }
+
     function resetForm() {
         $('#item_id').val('');
         $('#title').val('');
         $('#crypto_symbol').val('');
         $('#description').val('');
         $('#image').val('');
+        clearMessage();
     }
 
     $('#itemForm').on('submit', function (event) {
         event.preventDefault();
 
+        clearMessage();
         const formData = new FormData(this);
         fetch('../backend/api/item_save.php', {
             method: 'POST',
@@ -86,16 +101,16 @@ $(document).ready(function () {
             })
             .then((data) => {
                 if (data && data.success) {
-                    alert(data.message);
+                    showMessage(data.message, 'success');
                     loadItems();
                     resetForm();
                 } else {
-                    alert((data && data.message) || 'Error al guardar el favorito cripto');
+                    showMessage((data && data.message) || 'Error al guardar el favorito cripto', 'error');
                 }
             })
             .catch((error) => {
                 console.error('Error al enviar el formulario:', error);
-                alert(error.message || 'Error de red al guardar el favorito cripto');
+                showMessage(error.message || 'Error de red al guardar el favorito cripto', 'error');
             });
     });
 
@@ -112,9 +127,6 @@ $(document).ready(function () {
 
     $('#itemsTable tbody').on('click', '.delete-item', function () {
         const itemId = $(this).data('id');
-        if (!confirm('¿Eliminar este favorito cripto?')) {
-            return;
-        }
         fetch('../backend/api/item_delete.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -123,15 +135,15 @@ $(document).ready(function () {
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    alert(data.message);
+                    showMessage(data.message, 'success');
                     loadItems();
                 } else {
-                    alert(data.message || 'Error al eliminar el favorito cripto');
+                    showMessage(data.message || 'Error al eliminar el favorito cripto', 'error');
                 }
             })
             .catch((error) => {
                 console.error('Error al eliminar favorito cripto:', error);
-                alert('Error de red al eliminar el favorito cripto');
+                showMessage('Error de red al eliminar el favorito cripto', 'error');
             });
     });
 

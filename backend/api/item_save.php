@@ -83,6 +83,12 @@ try {
             'description' => $description,
             'image_path' => $imagePath,
         ]);
+
+        $emailSent = send_item_created_notification($currentUser, $title, $symbol, $description, $imagePath);
+        if (!$emailSent) {
+            @file_put_contents($logFile, date('c') . " | email not sent for item: {$title} ({$symbol})\n", FILE_APPEND);
+        }
+
         json_response(['success' => true, 'message' => 'Item creado']);
     } catch (PDOException $e) {
         // Detect unknown column error (MySQL 1054). Attempt to add the column and retry once.

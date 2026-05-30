@@ -1,0 +1,17 @@
+﻿# Composer
+/vendor/
+/composer.phar
+/composer-setup.php
+
+# PHP generated files
+/backend/logs/
+/backend/uploads/
+/backend/consumo_api/cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/

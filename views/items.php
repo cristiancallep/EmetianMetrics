@@ -70,6 +70,7 @@ require_login();
 						<button type="button" id="resetItem" class="secondary-btn">Limpiar</button>
 						<button type="submit" class="primary-btn">Guardar favorito</button>
 					</div>
+					<div id="itemFormMessage" class="notification" aria-live="polite"></div>
 				</form>
 			</section>
 			<section class="panel table-panel">

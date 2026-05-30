@@ -46,7 +46,7 @@ function toggleSidebar() {
 function downloadPdfReport() {
 	const PdfDocument = getPdfLibrary();
 	if (!PdfDocument) {
-		alert('No se pudo cargar la librería PDF.');
+		showDashboardMessage('No se pudo cargar la librería PDF.', 'error');
 		return;
 	}
 
@@ -195,6 +195,17 @@ function renderTable(coins) {
 			}
 		});
 	}, 80);
+}
+
+function showDashboardMessage(message, type = 'info') {
+	const messageBox = document.getElementById('dashboardMessage');
+	if (!messageBox) return;
+	messageBox.className = `notification ${type}`;
+	messageBox.textContent = message;
+	setTimeout(() => {
+		messageBox.textContent = '';
+		messageBox.className = 'notification';
+	}, 4500);
 }
 
 function updateChart(prices) {
